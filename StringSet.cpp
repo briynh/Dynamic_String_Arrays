@@ -1,19 +1,21 @@
 #include "StringSet.h"
 #include <iostream>
 
+//Default Constructor
 StringSet::StringSet()
 {
     maxSize = 4;
     currentSize = 0;
 }
 
+//Destructor
 StringSet::~StringSet()
 {
     delete [] Array;
     Array = nullptr;
 }
 
-
+//Copy Constructor
 StringSet::StringSet(const StringSet & toBeCopied)
 {
     this->currentSize = toBeCopied.currentSize;
@@ -28,6 +30,7 @@ StringSet::StringSet(const StringSet & toBeCopied)
 
 }
 
+//Insertion operator
 bool StringSet::insert(std::string toBeInserted)
 {
     if(this->find(toBeInserted) != -1)
@@ -55,6 +58,7 @@ bool StringSet::insert(std::string toBeInserted)
     //std::cout << Array[currentSize-1] << " current max size = " << maxSize << std::endl;
 }
 
+//String removal from set **WORK IN PROGRESS**
 bool StringSet::remove(std::string toBeRemoved)
 {
     int index = find(toBeRemoved);
@@ -66,6 +70,7 @@ bool StringSet::remove(std::string toBeRemoved)
     }
 }
 
+//Finding given string within a set
 int StringSet::find(std::string toBeFound) const
 {
     for(int i = 0; i < currentSize; i++)
@@ -80,6 +85,7 @@ int StringSet::find(std::string toBeFound) const
     return -1;
 }
 
+//Returns the size of the set
 int StringSet::size() const
 {
     return currentSize;
@@ -93,6 +99,7 @@ void StringSet::printAll()
     }
 }
 
+//Union function
 StringSet StringSet::unions(const StringSet & toBeUnioned) const
 {
     StringSet *unionedStringSet = new StringSet();
@@ -113,6 +120,7 @@ StringSet StringSet::unions(const StringSet & toBeUnioned) const
 
 }
 
+//Intersection function
 StringSet StringSet::intersection(const StringSet & toBeIntersectioned) const
 {
     StringSet *intersectionedStringSet = new StringSet();
@@ -128,6 +136,7 @@ StringSet StringSet::intersection(const StringSet & toBeIntersectioned) const
 
 }
 
+//Difference function
 StringSet StringSet::difference(const StringSet & toBeDifferenced) const
 {
     StringSet *differencedStringSet = new StringSet();
